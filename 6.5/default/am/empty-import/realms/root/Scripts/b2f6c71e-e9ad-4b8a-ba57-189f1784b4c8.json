@@ -1,0 +1,22 @@
+{
+  "metadata" : {
+    "realm" : "/",
+    "amsterVersion" : "6.5.2.1",
+    "entityType" : "Scripts",
+    "entityId" : "b2f6c71e-e9ad-4b8a-ba57-189f1784b4c8",
+    "pathParams" : { }
+  },
+  "data" : {
+    "_id" : "b2f6c71e-e9ad-4b8a-ba57-189f1784b4c8",
+    "name" : "2faPolicyCondition",
+    "description" : null,
+    "script" : "Ly92YXIgdXNlckFkZHJlc3NTZXQgPSBpZGVudGl0eS5nZXRBdHRyaWJ1dGUoInBvc3RhbEFkZHJlc3MiKTsKdmFyIHByZVRpbWUgPSBzZXNzaW9uLmdldFByb3BlcnR5KCIyZmFMYXN0Q3JlYXRlZEF0Iik7CmlmIChwcmVUaW1lID09IG51bGwpIHsKICAgIGFkdmljZS5wdXQoImF1dGhUeXBlIiwgWyJ0d29fZmFjdG9yX2F1dGgiXSk7CiAgICBhdXRob3JpemVkID0gZmFsc2U7Cn0gZWxzZSB7CnZhciBub3cgPSBuZXcgRGF0ZSgpLmdldFRpbWUoKTsKdmFyIGRpZmZJblNlYyA9IChub3cgLSBwcmVUaW1lKSAvIDEwMDA7CmlmIChkaWZmSW5TZWMgPiAxNSkgewogIGFkdmljZS5wdXQoImF1dGhUeXBlIiwgWyJ0d29fZmFjdG9yX2F1dGgiXSk7CiAgYXV0aG9yaXplZCA9IGZhbHNlOwp9IGVsc2UgewogIGF1dGhvcml6ZWQgPSB0cnVlOwp9Cn0=",
+    "default" : false,
+    "language" : "JAVASCRIPT",
+    "context" : "POLICY_CONDITION",
+    "createdBy" : "null",
+    "creationDate" : 0,
+    "lastModifiedBy" : "null",
+    "lastModifiedDate" : 0
+  }
+}

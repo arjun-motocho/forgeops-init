@@ -1,0 +1,26 @@
+{
+  "metadata" : {
+    "realm" : null,
+    "amsterVersion" : "6.5.2.1",
+    "entityType" : "AuthenticatorPush",
+    "entityId" : "AuthenticatorPush",
+    "pathParams" : { }
+  },
+  "data" : {
+    "_id" : "",
+    "defaults" : {
+      "authenticatorPushDeviceSettingsEncryptionKeystore" : "/home/forgerock/openam/openam/keystore.jks",
+      "authenticatorPushDeviceSettingsEncryptionKeystorePassword" : null,
+      "authenticatorPushDeviceSettingsEncryptionKeystorePassword-encrypted" : "AAAAA0FFUwIQXHA1IXKR4Epdev7lWKZp1O2gNzIyjIJQFKp/0+gU+DNHNeODtmhT4g==",
+      "pushAttrName" : "pushDeviceProfiles",
+      "authenticatorPushDeviceSettingsEncryptionKeystoreType" : "JKS",
+      "authenticatorPushSkippableName" : "push2faEnabled",
+      "authenticatorPushDeviceSettingsEncryptionScheme" : "NONE"
+    },
+    "_type" : {
+      "_id" : "authenticatorPushService",
+      "name" : "ForgeRock Authenticator (Push) Service",
+      "collection" : false
+    }
+  }
+}
