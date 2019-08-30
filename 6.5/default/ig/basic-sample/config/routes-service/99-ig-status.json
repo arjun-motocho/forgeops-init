@@ -1,0 +1,34 @@
+{
+
+  "name" : "99-ig-status",
+
+  "baseURI" : "http://localhost",
+
+  "condition" : "${matches(request.uri.path, '^/ig/status')}",
+
+  "handler" : {
+
+    "name" : "ErrorHandler",
+
+    "type" : "StaticResponseHandler",
+
+    "config" : {
+
+      "status" : 200,
+
+      "reason" : "OK",
+
+      "entity" : "<html><body><h2>IG servie running ok.</h2></body></html>",
+
+      "headers" : {
+
+        "content-type" : [ "text/html" ]
+
+      }
+
+    }
+
+  }
+
+}
+
