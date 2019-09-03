@@ -2,7 +2,7 @@
 
   "name" : "99-ig-status",
 
-  "baseURI" : "http://18.188.191.250:8181",
+  "baseURI" : "http://openig.prod.motocho.io",
 
   "condition" : "${matches(request.uri.path, '^/ig/status')}",
 
