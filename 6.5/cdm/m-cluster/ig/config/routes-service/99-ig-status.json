@@ -1,17 +1,9 @@
 {
 
   "name" : "99-ig-status",
-
-  "baseURI" : "http://openig.prod.motocho.io",
-
-  "condition" : "${matches(request.uri.path, '^/ig/status')}",
-
+  "condition" : "${matches(request.uri.path, '^/my/status')}",
   "handler" : {
-
-    "name" : "ErrorHandler",
-
     "type" : "StaticResponseHandler",
-
     "config" : {
 
       "status" : 200,
