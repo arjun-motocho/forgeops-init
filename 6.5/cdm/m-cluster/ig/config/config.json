@@ -1,63 +1,18 @@
 {
   "handler": {
-    "type": "DispatchHandler",
-    "config": {
-      "bindings": [
-        {
-          "condition": "${request.uri.host == env['MY_POD_IP']}",
-          "handler": {
-            "name": "router-pod",
-            "type": "Router",
-            "config": {
-              "scanInterval": "disabled",
-              "directory": "${openig.configDirectory}/routes-pod"
-            }
-          }
-        },
-        {
-          "condition": "${request.uri.host != env['MY_POD_IP']}",
-          "handler": {
-            "name": "router-service",
-            "type": "Router",
-            "config": {
-              "scanInterval": "disabled",
-              "directory": "${openig.configDirectory}/routes-service"
-            }
-          }
-        }
-      ]
-    }
+    "type": "Router",
+    "name": "_router",
+    "baseURI": "http://app.demo.com:8081",
+    "capture": "all"
   },
   "heap": [
     {
-      "name": "JwtSession",
-      "type": "JwtSession"
-    },
-    {
-      "name": "AmService-1",
-      "type": "AmService",
+      "name": "capture",
+      "type": "CaptureDecorator",
       "config": {
-          "url": "http://openam",
-          "realm": "/",
-          "agent": {
-              "username": "ig-agent",
-              "password": "password"
-          },
-          "sessionCache": {
-              "enabled": true
-          }
+        "captureEntity": true,
+        "_captureContext": true
       }
-    },
-  {
-      "name": "ForgeRockClientHandler",
-      "type": "ClientHandler",
-      "config": {
-          "trustManager": {
-              "type": "TrustAllManager"
-            }
-      },
-      "_capture": "all"
-  }
-  ],
-  "monitor": true
+    }
+  ]
 }
