@@ -1,0 +1,31 @@
+{
+   "name": "health endpoints",
+   "condition": "${matches(request.uri.path, '^/my')}",
+   "handler": {
+      "type": "DispatchHandler",
+      "config": {
+         "bindings": [
+           {
+             "condition": "${matches(request.uri.path, 'status$')}",
+             "handler": {
+               "type": "StaticResponseHandler",
+               "config": {
+                 "status": 200,
+                 "entity": "<h1> i am ok </h1>"
+               }
+             }
+           },
+           {
+             "condition": "${matches(request.uri.path, 'health$')}",
+             "handler": {
+               "type": "StaticResponseHandler",
+               "config": {
+                 "status": 200,
+                 "entity": "<h1> i am ok </h1>"
+               }
+             }
+           }
+         ]
+      }
+   }
+}
