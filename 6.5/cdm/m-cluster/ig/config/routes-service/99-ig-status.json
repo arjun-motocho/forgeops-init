@@ -6,7 +6,7 @@
       "config": {
          "bindings": [
            {
-             "condition": "${matches(request.uri.path, 'status')}",
+             "condition": "${matches(request.uri.path, 'status$')}",
              "handler": {
                "type": "StaticResponseHandler",
                "config": {
@@ -16,7 +16,7 @@
              }
            },
            {
-             "condition": "${matches(request.uri.path, 'health')}",
+             "condition": "${matches(request.uri.path, 'health$')}",
              "handler": {
                "type": "StaticResponseHandler",
                "config": {
