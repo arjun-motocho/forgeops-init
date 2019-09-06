@@ -1,26 +1,31 @@
 {
-
-  "name" : "99-ig-status",
-  "condition" : "${matches(request.uri.path, '^/my/status')}",
-  "handler" : {
-    "type" : "StaticResponseHandler",
-    "config" : {
-
-      "status" : 200,
-
-      "reason" : "OK",
-
-      "entity" : "<html><body><h2>IG servie running ok.</h2></body></html>",
-
-      "headers" : {
-
-        "content-type" : [ "text/html" ]
-
+   "name": "health endpoints",
+   "condition": "${matches(request.uri.path, '^/my')}",
+   "handler": {
+      "type": "DispatchHandler",
+      "config": {
+         "bindings": [
+           {
+             "condition": "${matches(request.uri.path, 'status')}",
+             "handler": {
+               "type": "StaticResponseHandler",
+               "config": {
+                 "status": 200,
+                 "entity" "<h1> i am ok </h1>"
+               }
+             }
+           },
+           {
+             "condition": "${matches(request.uri.path, 'health')}",
+             "handler": {
+               "type": "StaticResponseHandler",
+               "config": {
+                 "status": 200,
+                 "entity" "<h1> i am ok </h1>"
+               }
+             }
+           }
+         ]
       }
-
-    }
-
-  }
-
+   }
 }
-
