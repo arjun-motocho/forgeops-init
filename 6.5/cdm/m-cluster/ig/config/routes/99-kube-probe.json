@@ -1,6 +1,6 @@
 {
    "name": "Kubernetes endpoints",
-   "condition": "${matches(request.uri.path, '^/kube')",
+   "condition": "${matches(request.uri.path, '^/kube')}",
    "handler": {
       "type": "DispatchHandler",
       "config": {
