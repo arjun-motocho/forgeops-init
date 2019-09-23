@@ -1,0 +1,99 @@
+{
+  "name": "quotes-info-api",
+  "baseURI": "http://quotes-info.motocho-svc.svc.cluster.local",
+  "condition": "${matches(request.uri.path, '^/quotes/v1/cryptocurrency') or matches(request.uri.path, '^/quotes/v1/global-metrics')}",
+  "heap": [
+    {
+      "name": "AmService-1",
+      "type": "AmService",
+      "config": {
+        "url": "https://stag-openam.motocho.io",
+        "realm": "/",
+        "ssoTokenHeader": "iPlanetDirectoryPro",
+        "version": "6.5",
+        "agent": {
+          "username": "ig_agent",
+          "password": "password"
+        },
+        "sessionCache": {
+          "enabled": false
+        }
+      }
+    }
+  ],
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "ConditionalFilter",
+          "config": {
+            "condition": "${request.method == 'OPTIONS'}",
+            "delegate": {
+              "name": "SetCrosHeaders",
+              "type": "HeaderFilter",
+              "config": {
+                "messageType": "RESPONSE",
+                "remove": [
+                  "Access-Control-Allow-Origin"
+                ],
+                "add": {
+                  "Access-Control-Allow-Headers": [
+                    "x-motocho-sso-token"
+                  ],
+                  "Access-Control-Allow-Origin": [
+                    "*"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "ConditionalFilter",
+          "config": {
+            "condition": "${request.method != 'OPTIONS'}",
+            "delegate": {
+              "type": "ChainOfFilters",
+              "config": {
+                "filters": [
+                  {
+                    "name": "PolicyEnforcementFilter-1",
+                    "type": "PolicyEnforcementFilter",
+                    "config": {
+                      "pepRealm": "/",
+                      "application": "PEP-SSO",
+                      "ssoTokenSubject": "${request.headers['x-motocho-sso-token'][0]}",
+                      "amService": "AmService-1"
+                    }
+                  },
+                  {
+                    "name": "SessionInfoFilter-1",
+                    "type": "SessionInfoFilter",
+                    "config": {
+                      "amService": "AmService-1",
+                      "ssoToken": "${request.headers['x-motocho-sso-token'][0]}"
+                    }
+                  },
+                  {
+                    "name": "HeaderFilter-1",
+                    "type": "HeaderFilter",
+                    "config": {
+                      "messageType": "REQUEST",
+                      "add": {
+                        "x-motocho-user-id": [
+                          "${contexts.amSession.properties.userId}"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "handler": "ReverseProxyHandler"
+    }
+  }
+}
